@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes.dart';
 import 'package:provider_with_mvvm/provider_example/provider/favourites_provder.dart';
 import 'package:provider_with_mvvm/provider_example/provider/theme_changer_provider.dart';
 import 'package:provider_with_mvvm/provider_example/utils/utils.dart';
+import 'mvvm_example/utils/routes/routes_name.dart';
 import 'provider_example/provider/count_provider.dart';
 import 'provider_example/provider/slider_provider.dart';
 import 'home_screen.dart';
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
             theme: lightThemeData(),
             darkTheme: darkThemeData(),
             debugShowCheckedModeBanner: false,
-            home: const HomeScreen(),
+            initialRoute: RoutesName.home,
+            onGenerateRoute: Routes.generateRoutes,
+            // home: const HomeScreen(),
           );
         },
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider_with_mvvm/mvvm_example/view/screen/login_screen.dart';
 import 'package:provider_with_mvvm/provider_example/utils/constants.dart';
 import 'package:provider_with_mvvm/provider_example/utils/widgets.dart';
 
@@ -24,6 +25,11 @@ class HomeScreen extends StatelessWidget {
                     title: "Provider Example",
                     icon: const Icon(Icons.animation_sharp),
                     navigateTo: const ProviderExamplesScreen()),
+                customTile(
+                    context: context,
+                    title: "MVVM Example",
+                    icon: const Icon(Icons.animation_sharp),
+                    navigateTo: const LoginScreen())
               ],
             ),
           )),

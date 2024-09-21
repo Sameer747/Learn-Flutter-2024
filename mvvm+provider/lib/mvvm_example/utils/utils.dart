@@ -1,0 +1,36 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_route.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+class Utils {
+  static toastMessage({required String message}) {
+    Fluttertoast.showToast(
+        gravity: ToastGravity.CENTER,
+        toastLength: Toast.LENGTH_SHORT,
+        msg: message);
+  }
+
+  static void flushBarErrorMessage(
+      {required BuildContext context, required String message}) {
+    showFlushbar(
+        context: context,
+        flushbar: Flushbar(
+          forwardAnimationCurve: Curves.decelerate,
+          reverseAnimationCurve: Curves.easeInOut,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.all(15),
+          // backgroundColor: Colors.red,
+          duration: const Duration(seconds: 5),
+          positionOffset: 20,
+          flushbarPosition: FlushbarPosition.TOP,
+          // title: "Sad",
+          message: message,
+        )..show(context));
+  }
+
+  static snackBar({required BuildContext context, required String message}) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(backgroundColor: Colors.greenAccent, content: Text(message)));
+  }
+}
