@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_with_mvvm/home_screen.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes_name.dart';
 import 'package:provider_with_mvvm/mvvm_example/view/screen/home_screen.dart';
-import 'package:provider_with_mvvm/mvvm_example/view/screen/login_screen.dart';
+import 'package:provider_with_mvvm/mvvm_example/view/screen/login_view.dart';
 
 class Routes {
   static Route<dynamic> generateRoutes(RouteSettings settings) {
@@ -10,7 +10,7 @@ class Routes {
       case RoutesName.home_mvvm:
         return MaterialPageRoute(builder: (context) => const HomeScreenMvvm());
       case RoutesName.login:
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
+        return MaterialPageRoute(builder: (context) => const LoginView());
       case RoutesName.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
