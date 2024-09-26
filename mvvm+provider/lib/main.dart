@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes.dart';
+import 'package:provider_with_mvvm/mvvm_example/view_model/auth_view_model.dart';
 import 'package:provider_with_mvvm/provider_example/provider/favourites_provder.dart';
 import 'package:provider_with_mvvm/provider_example/provider/theme_changer_provider.dart';
 import 'package:provider_with_mvvm/provider_example/utils/utils.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CountProvider()),
         ChangeNotifierProvider(create: (context) => SliderProvider()),
         ChangeNotifierProvider(create: (context) => FavouritesProvder()),
-        ChangeNotifierProvider(create: (context) => ThemeChangerProvider())
+        ChangeNotifierProvider(create: (context) => ThemeChangerProvider()),  
+        ChangeNotifierProvider(create: (context) => AuthViewModel())
       ],
       child: Builder(
         builder: (context) {
