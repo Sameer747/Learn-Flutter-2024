@@ -1,5 +1,10 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+/*
+ * The AppException class gives exception based on custom 
+ * type exception defined in the class
+*/
+
 class AppException implements Exception {
   final _message;
   final _prefix;
@@ -13,8 +18,7 @@ class AppException implements Exception {
 }
 
 class FetchDataException extends AppException {
-  FetchDataException([String? message])
-      : super(message, "Error During Communication ");
+  FetchDataException([String? message]) : super(message, "Error During Communication ");
 }
 
 class BadRequestException extends AppException {
@@ -22,11 +26,9 @@ class BadRequestException extends AppException {
 }
 
 class UnauthorisedException extends AppException {
-  UnauthorisedException([String? message])
-      : super(message, "Unauthorised Request");
+  UnauthorisedException([String? message]) : super(message, "Unauthorised Request");
 }
 
 class InvalidInputException extends AppException {
-  InvalidInputException([String? message])
-      : super(message, "Invalid Input Request");
+  InvalidInputException([String? message]) : super(message, "Invalid Input Request");
 }

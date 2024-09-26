@@ -2,17 +2,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_with_mvvm/mvvm_example/res/components/round_button.dart';
+import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes_name.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/utils.dart';
 import 'package:provider_with_mvvm/mvvm_example/view_model/auth_view_model.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignupView> createState() => _SignupViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignupViewState extends State<SignupView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode emailFocusNode = FocusNode();
@@ -34,12 +35,12 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     print("build");
-    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-    // final height = MediaQuery.of(context).size.height;
+    // final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Sign Up"),
       ),
       body: SafeArea(
         child: Column(
@@ -111,7 +112,7 @@ class _LoginViewState extends State<LoginView> {
             Consumer<AuthViewModel>(
               builder: (context, authProvider, child) {
                 return RoundButton(
-                  title: 'Login',
+                  title: 'Sign Up',
                   loading: authProvider.loading,
                   onPress: () {
                     if (_emailController.text.isEmpty) {
@@ -129,11 +130,25 @@ class _LoginViewState extends State<LoginView> {
                         "email": _emailController.text.toString(),
                         "password": _passwordController.text.toString()
                       };
-                      authProvider.loginApi(data: data, context: context);
+                      authProvider.signUpApi(data: data, context: context);
                     }
                   },
                 );
               },
+            ),
+            SizedBox(height: height * 0.01),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.login);
+              },
+              child: RichText(
+                  text: const TextSpan(
+                      text: "Already have an account? ",
+                      children: [
+                        TextSpan(
+                            text: "Login", style: TextStyle(color: Colors.blue))
+                      ],
+                      style: TextStyle(color: Colors.black))),
             )
           ],
         ),

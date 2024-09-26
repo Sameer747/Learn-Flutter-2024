@@ -1,5 +1,9 @@
 import 'package:provider_with_mvvm/mvvm_example/data/response/status.dart';
 
+/*
+ * The ApiResponse class is responsible for the response based on response
+*/
+
 class ApiResponse<T> {
   Status? status;
   T? data;

@@ -5,4 +5,6 @@ class RoutesName {
   static const String home_mvvm = "home_screen_mvvm";
   // home screen
   static const String home = "home_screen";
+  // signup screen
+  static const String signup = "signup_screen";
 }

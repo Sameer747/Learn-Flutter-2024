@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider_with_mvvm/mvvm_example/view/screen/login_view.dart';
+import 'package:provider_with_mvvm/mvvm_example/view/screens/login_view.dart';
 import 'package:provider_with_mvvm/provider_example/utils/constants.dart';
 import 'package:provider_with_mvvm/provider_example/utils/widgets.dart';
 

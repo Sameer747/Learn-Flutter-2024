@@ -2,6 +2,11 @@ import 'package:provider_with_mvvm/mvvm_example/data/network/base_api_service.da
 import 'package:provider_with_mvvm/mvvm_example/data/network/network_api_service.dart';
 import 'package:provider_with_mvvm/mvvm_example/res/endpoints.dart';
 
+/*
+ * The repository class is a bridge between
+ * data class and repository class  
+*/
+
 class AuthRepository {
   final BaseApiServices _apiServices = NetworkApiServices();
 
@@ -14,9 +19,9 @@ class AuthRepository {
     }
   }
 
-  Future<dynamic> registerApi({required dynamic data}) async {
+  Future<dynamic> signUpApi({required dynamic data}) async {
     try {
-      dynamic response = await _apiServices.postApiService(url: Endpoints.registerApiEndPoint, data: data);
+      dynamic response = await _apiServices.postApiService(url: Endpoints.signUpApiEndPoint, data: data);
       return response;
     } catch (e) {
       rethrow;
