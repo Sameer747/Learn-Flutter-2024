@@ -1,10 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_with_mvvm/mvvm_example/model/user_model.dart';
 import 'package:provider_with_mvvm/mvvm_example/res/components/round_button.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes_name.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/utils.dart';
 import 'package:provider_with_mvvm/mvvm_example/view_model/auth_view_model.dart';
+import 'package:provider_with_mvvm/mvvm_example/view_model/user_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -35,7 +36,8 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     print("build");
-    // final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    final userViewModel = Provider.of<UserViewModel>(context, listen: false);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -109,43 +111,44 @@ class _LoginViewState extends State<LoginView> {
                 );
               },
             ),
-            Consumer<AuthViewModel>(
-              builder: (context, authProvider, child) {
-                return RoundButton(
-                  title: 'Login',
-                  loading: authProvider.loading,
-                  onPress: () {
-                    if (_emailController.text.isEmpty) {
-                      Utils.flushBarErrorMessage(
-                          context: context, message: "Please enter email");
-                    } else if (_passwordController.text.isEmpty) {
-                      Utils.flushBarErrorMessage(
-                          context: context, message: "Please enter password");
-                    } else if (_passwordController.text.length < 6) {
-                      Utils.flushBarErrorMessage(
-                          context: context,
-                          message: "Please enter 6 digit password");
-                    } else {
-                      Map data = {
-                        "email": _emailController.text.toString(),
-                        "password": _passwordController.text.toString()
-                      };
-                      authProvider.loginApi(data: data, context: context);
-                    }
-                  },
-                );
+            RoundButton(
+              title: 'Login',
+              loading: authViewModel.loading,
+              onPress: () {
+                if (_emailController.text.isEmpty) {
+                  Utils.flushBarErrorMessage(
+                      context: context, message: "Please enter email");
+                } else if (_passwordController.text.isEmpty) {
+                  Utils.flushBarErrorMessage(
+                      context: context, message: "Please enter password");
+                } else if (_passwordController.text.length < 6) {
+                  Utils.flushBarErrorMessage(
+                      context: context,
+                      message: "Please enter 6 digit password");
+                } else {
+                  Map data = {
+                    "email": _emailController.text.toString(),
+                    "password": _passwordController.text.toString()
+                  };
+                  authViewModel.loginApi(data: data, context: context);
+                  userViewModel.saveUser();
+                }
               },
             ),
             SizedBox(height: height * 0.01),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, RoutesName.signup);
               },
-              child: RichText(text: const TextSpan(text: "Don't have an account? ",
-              children: [
-                TextSpan(text: "SignUp",style: TextStyle(color: Colors.blue))
-              ],
-              style: TextStyle(color: Colors.black))),
+              child: RichText(
+                  text: const TextSpan(
+                      text: "Don't have an account? ",
+                      children: [
+                        TextSpan(
+                            text: "SignUp",
+                            style: TextStyle(color: Colors.blue))
+                      ],
+                      style: TextStyle(color: Colors.black))),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider_with_mvvm/mvvm_example/view/screens/login_view.dart';
+import 'package:provider_with_mvvm/mvvm_example/view/screens/splash_view.dart';
 import 'package:provider_with_mvvm/provider_example/utils/constants.dart';
 import 'package:provider_with_mvvm/provider_example/utils/widgets.dart';
 
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                     context: context,
                     title: "MVVM Example",
                     icon: const Icon(Icons.animation_sharp),
-                    navigateTo: const LoginView())
+                    navigateTo: const SplashView())
               ],
             ),
           )),
