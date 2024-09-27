@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider_with_mvvm/mvvm_example/view/services/splash_services.dart';
 
@@ -8,19 +10,26 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> {  
+class _SplashViewState extends State<SplashView> {
   SplashServices splashServices = SplashServices();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    splashServices.checkAuthentication(context);
+    Timer(const Duration(seconds: 1), () {
+      splashServices.checkAuthentication(context);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Splash Screen",style: Theme.of(context).textTheme.headlineLarge ,),),
+      body: Center(
+        child: Text(
+          "Splash Screen",
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+      ),
     );
   }
 }

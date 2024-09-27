@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_with_mvvm/mvvm_example/model/user_model.dart';
 import 'package:provider_with_mvvm/mvvm_example/res/components/round_button.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes_name.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/utils.dart';
@@ -15,8 +15,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
   ValueNotifier<bool> obscurePassword = ValueNotifier(true);
@@ -26,8 +26,8 @@ class _LoginViewState extends State<LoginView> {
     // TODO: implement dispose
     super.dispose();
 
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
     obscurePassword.dispose();
@@ -35,13 +35,26 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    print("build");
+    if (kDebugMode) {
+      print("build");
+    }
+    // provider
     final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
     final userViewModel = Provider.of<UserViewModel>(context, listen: false);
+    // media query
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, RoutesName.home);
+                },
+                icon: const Icon(Icons.arrow_back_outlined));
+          },
+        ),
         title: const Text("Login"),
       ),
       body: SafeArea(
@@ -59,7 +72,7 @@ class _LoginViewState extends State<LoginView> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
-                    controller: _emailController,
+                    controller: emailController,
                     focusNode: emailFocusNode,
                     keyboardType: TextInputType.emailAddress,
                     onFieldSubmitted: (value) {
@@ -90,7 +103,7 @@ class _LoginViewState extends State<LoginView> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20)),
                     child: TextFormField(
-                      controller: _passwordController,
+                      controller: passwordController,
                       focusNode: passwordFocusNode,
                       obscureText: value,
                       obscuringCharacter: "*",
@@ -115,20 +128,20 @@ class _LoginViewState extends State<LoginView> {
               title: 'Login',
               loading: authViewModel.loading,
               onPress: () {
-                if (_emailController.text.isEmpty) {
+                if (emailController.text.isEmpty) {
                   Utils.flushBarErrorMessage(
                       context: context, message: "Please enter email");
-                } else if (_passwordController.text.isEmpty) {
+                } else if (passwordController.text.isEmpty) {
                   Utils.flushBarErrorMessage(
                       context: context, message: "Please enter password");
-                } else if (_passwordController.text.length < 6) {
+                } else if (passwordController.text.length < 6) {
                   Utils.flushBarErrorMessage(
                       context: context,
                       message: "Please enter 6 digit password");
                 } else {
                   Map data = {
-                    "email": _emailController.text.toString(),
-                    "password": _passwordController.text.toString()
+                    "email": emailController.text.toString(),
+                    "password": passwordController.text.toString()
                   };
                   authViewModel.loginApi(data: data, context: context);
                   userViewModel.saveUser();

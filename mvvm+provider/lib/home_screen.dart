@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider_with_mvvm/mvvm_example/view/screens/login_view.dart';
 import 'package:provider_with_mvvm/mvvm_example/view/screens/splash_view.dart';
 import 'package:provider_with_mvvm/provider_example/utils/constants.dart';
 import 'package:provider_with_mvvm/provider_example/utils/widgets.dart';
@@ -11,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           "MVVM + PROVIDER",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

@@ -18,6 +18,7 @@ class _HomeScreenMvvmState extends State<HomeScreenMvvm> {
         Navigator.pushNamed(context, RoutesName.splash);
         break;
       case 1:
+        Navigator.pushNamed(context,RoutesName.home);
         break;
     }
   }
@@ -27,6 +28,11 @@ class _HomeScreenMvvmState extends State<HomeScreenMvvm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Homepage'),
+        leading: Builder(builder:(context) {
+          return IconButton(onPressed: (){
+            Navigator.pushNamed(context, RoutesName.home);
+          }, icon: const Icon(Icons.arrow_back_rounded));
+        },),
         actions: <Widget>[
           PopupMenuButton<int>(
             onSelected: (item) {
