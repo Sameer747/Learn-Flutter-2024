@@ -1,6 +1,6 @@
 import 'package:provider_with_mvvm/mvvm_example/data/network/base_api_service.dart';
 import 'package:provider_with_mvvm/mvvm_example/data/network/network_api_service.dart';
-import 'package:provider_with_mvvm/mvvm_example/res/endpoints.dart';
+import 'package:provider_with_mvvm/mvvm_example/res/endpoint.dart';
 
 /*
  * The repository class is a bridge between

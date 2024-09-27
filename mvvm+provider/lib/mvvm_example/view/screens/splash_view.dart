@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:provider_with_mvvm/mvvm_example/view/services/splash_services.dart';
+import 'package:provider_with_mvvm/mvvm_example/services/splash_services.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
