@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
-  static void fieldFocusNode(
-      {required BuildContext context,
-      required FocusNode currentFocus,
-      required FocusNode nextFocus}) {
+  static void fieldFocusNode({required BuildContext context,required FocusNode currentFocus,required FocusNode nextFocus}) {
     currentFocus.unfocus();
     nextFocus.requestFocus();
   }
@@ -38,7 +35,6 @@ class Utils {
           flushbarPosition: FlushbarPosition.TOP,
           // title: "Sad",
           message: message,
-          
         )..show(context));
   }
 
@@ -46,5 +42,17 @@ class Utils {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: Colors.greenAccent,
         content: Center(child: Text(message))));
+  }
+
+  static double averageRating({required List<int> ratings}) {
+    var avgRating = 0;
+
+    for (var i = 0; i < ratings.length; i++) {
+      avgRating = avgRating + ratings[i];
+    }
+
+    var result = (avgRating / ratings.length).toStringAsFixed(1);
+
+    return double.parse(result);
   }
 }

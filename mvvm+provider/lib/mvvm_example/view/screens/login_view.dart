@@ -5,7 +5,6 @@ import 'package:provider_with_mvvm/mvvm_example/res/components/round_button.dart
 import 'package:provider_with_mvvm/mvvm_example/utils/routes/routes_name.dart';
 import 'package:provider_with_mvvm/mvvm_example/utils/utils.dart';
 import 'package:provider_with_mvvm/mvvm_example/view_model/auth_view_model.dart';
-import 'package:provider_with_mvvm/mvvm_example/view_model/user_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -40,7 +39,6 @@ class _LoginViewState extends State<LoginView> {
     }
     // provider
     final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-    final userViewModel = Provider.of<UserViewModel>(context, listen: false);
     // media query
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
@@ -144,7 +142,6 @@ class _LoginViewState extends State<LoginView> {
                     "password": passwordController.text.toString()
                   };
                   authViewModel.loginApi(data: data, context: context);
-                  userViewModel.saveUser();
                 }
               },
             ),

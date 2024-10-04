@@ -62,6 +62,6 @@ dynamic returnResponse(http.Response response) {
       throw UnauthorisedException(response.body.toString());
     default:
       throw FetchDataException(
-          "Error occured while communicating with server: ${response.statusCode.toString()}");
+          "${response.statusCode.toString()}: ${response.reasonPhrase.toString()}");
   }
 }

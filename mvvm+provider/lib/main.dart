@@ -9,7 +9,6 @@ import 'package:provider_with_mvvm/provider_example/utils/utils.dart';
 import 'mvvm_example/utils/routes/routes_name.dart';
 import 'provider_example/provider/count_provider.dart';
 import 'provider_example/provider/slider_provider.dart';
-import 'home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
